@@ -1,1 +1,1 @@
-pytest lab0.py -v -s --html=report13.html --self-contained-html
+pytest testcase_Register.py -v -s --html=report13.html --self-contained-html
