@@ -1,0 +1,558 @@
+{
+  "config": {
+    "base_url": "https://webtestingteam14.vercel.app/signup.html",
+    "default_timeout": 10,
+    "default_sleep": 3
+  },
+  "test_cases": [
+    {
+      "id": "tc001",
+      "description": "Valid signup with all fields filled correctly",
+      "input": {
+        "first": "John",
+        "last": "Doe",
+        "email": "tc001@example.com",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "toast": "Account created successfully! Redirecting to login...",
+        "redirect": "login.html"
+      }
+    },
+    {
+      "id": "tc002",
+      "description": "Valid signup with minimum length first name (1 character)",
+      "input": {
+        "first": "A",
+        "last": "Doe",
+        "email": "tc17@example.com",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "toast": "Account created successfully! Redirecting to login...",
+        "redirect": "login.html"
+      }
+    },
+    {
+      "id": "tc003",
+      "description": "Valid signup with very long email (64 chars before @)",
+      "input": {
+        "first": "Join",
+        "last": "Doe",
+        "email": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA@example.com",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "toast": "Account created successfully! Redirecting to login...",
+        "redirect": "login.html"
+      }
+    },
+    {
+      "id": "tc004",
+      "description": "Valid signup with password containing space",
+      "input": {
+        "first": "Join",
+        "last": "Doe",
+        "email": "tc026@example.com",
+        "password": "password 123",
+        "confirm": "password 123",
+        "accept_terms": true
+      },
+      "output": {
+        "toast": "Account created successfully! Redirecting to login...",
+        "redirect": "login.html"
+      }
+    },
+    {
+      "id": "tc005",
+      "description": "Valid signup with special characters in password",
+      "input": {
+        "first": "Join",
+        "last": "Doe",
+        "email": "tc027@example.com",
+        "password": "!@#$%^&*!",
+        "confirm": "!@#$%^&*!",
+        "accept_terms": true
+      },
+      "output": {
+        "toast": "Account created successfully! Redirecting to login...",
+        "redirect": "login.html"
+      }
+    },
+    {
+      "id": "tc006",
+      "description": "Valid signup with uppercase email",
+      "input": {
+        "first": "Join",
+        "last": "Doe",
+        "email": "TC028@GMAIL.COM",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "toast": "Account created successfully! Redirecting to login...",
+        "redirect": "login.html"
+      }
+    },
+    {
+      "id": "tc007",
+      "description": "Missing first name",
+      "input": {
+        "last": "Doe",
+        "email": "test11@example.com",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "firstNameError": "First name is required"
+        }
+      }
+    },
+    {
+      "id": "tc008",
+      "description": "First name with only spaces",
+      "input": {
+        "first": "   ",
+        "last": "Doe",
+        "email": "test2@example.com",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "firstNameError": "First name is required"
+        }
+      }
+    },
+    {
+      "id": "tc009",
+      "description": "First name with special characters",
+      "input": {
+        "first": "John@#$%",
+        "last": "Doe",
+        "email": "tc021@example.com",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "firstNameError": "First name must not contain special characters"
+        }
+      }
+    },
+    {
+      "id": "tc010",
+      "description": "Last name with numbers",
+      "input": {
+        "first": "John",
+        "last": "Doe11",
+        "email": "tc022@example.com",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "firstNameError": "Last name must not contain number characters"
+        }
+      }
+    },
+    {
+      "id": "tc011",
+      "description": "Missing last name",
+      "input": {
+        "first": "Jon",
+        "email": "test2@example.com",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "lastNameError": "Last name is required"
+        }
+      }
+    },
+    {
+      "id": "tc012",
+      "description": "Last name with only spaces",
+      "input": {
+        "first": "Jon",
+        "last": "   ",
+        "email": "test2@example.com",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "lastNameError": "Last name is required"
+        }
+      }
+    },
+    {
+      "id": "tc013",
+      "description": "Last name with special characters",
+      "input": {
+        "first": "John",
+        "last": "Doe@#$%",
+        "email": "tc023@example.com",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "lastNameError": "Last name must not contain special characters"
+        }
+      }
+    },
+    {
+      "id": "tc014",
+      "description": "Last name with numbers",
+      "input": {
+        "first": "John",
+        "last": "Doe11",
+        "email": "tc024@example.com",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "lastNameError": "Last name must not contain number characters"
+        }
+      }
+    },
+    {
+      "id": "tc015",
+      "description": "Missing email",
+      "input": {
+        "first": "Jon",
+        "last": "Doe",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "emailError": "Email is required"
+        }
+      }
+    },
+    {
+      "id": "tc016",
+      "description": "Invalid email format (missing @)",
+      "input": {
+        "first": "Jon",
+        "last": "Join",
+        "email": "testexample.comm",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "emailError": "Please enter a valid email address"
+        }
+      }
+    },
+    {
+      "id": "tc017",
+      "description": "Invalid email format (missing domain)",
+      "input": {
+        "first": "John",
+        "last": "Doe",
+        "email": "test@",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "emailError": "Please enter a valid email address"
+        }
+      }
+    },
+    {
+      "id": "tc018",
+      "description": "Invalid email format (missing TLD)",
+      "input": {
+        "first": "John",
+        "last": "Doe",
+        "email": "test@example",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "emailError": "Please enter a valid email address"
+        }
+      }
+    },
+    {
+      "id": "tc019",
+      "description": "Email already registered",
+      "input": {
+        "first": "John",
+        "last": "Doe",
+        "email": "tc001@example.com",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "emailError": "This email address is already registered"
+        }
+      }
+    },
+    {
+      "id": "tc020",
+      "description": "Email with unicode characters",
+      "input": {
+        "first": "John",
+        "last": "Doe",
+        "email": "tést123@example.com",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "emailError": "Email must not contain unicode characters"
+        }
+      }
+    },
+    {
+      "id": "tc021",
+      "description": "Missing password",
+      "input": {
+        "first": "John",
+        "last": "Doe",
+        "email": "test@example.com",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "passwordError": "Password is required"
+        }
+      }
+    },
+    {
+      "id": "tc022",
+      "description": "Password too short (less than 6 characters)",
+      "input": {
+        "first": "John",
+        "last": "Doe",
+        "email": "test@example.com",
+        "password": "pass",
+        "confirm": "pass",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "passwordError": "Password must be at least 6 characters"
+        }
+      }
+    },
+    {
+      "id": "tc023",
+      "description": "Password with leading/trailing spaces (not matching confirm)",
+      "input": {
+        "first": "John",
+        "last": "Doe",
+        "email": "tc013@example.com",
+        "password": "   password123   ",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "confirmPasswordError": "Passwords do not match"
+        }
+      }
+    },
+    {
+      "id": "tc024",
+      "description": "Missing confirm password",
+      "input": {
+        "first": "John",
+        "last": "Doe",
+        "email": "test@example.com",
+        "password": "123456",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "confirmPasswordError": "Please confirm your password"
+        }
+      }
+    },
+    {
+      "id": "tc025",
+      "description": "Passwords do not match",
+      "input": {
+        "first": "John",
+        "last": "Doe",
+        "email": "test@example.com",
+        "password": "123456",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "confirmPasswordError": "Passwords do not match"
+        }
+      }
+    },
+    {
+      "id": "tc026",
+      "description": "Terms not accepted (force click signup button)",
+      "input": {
+        "first": "John",
+        "last": "Doe",
+        "email": "test@example.com",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": false,
+        "force_submit": true
+      },
+      "output": {
+        "errors": {
+          "termsError": "You must agree to the Terms & Conditions"
+        }
+      }
+    },
+    {
+      "id": "tc027",
+      "description": "First name too long (over 255 characters)",
+      "input": {
+        "first": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "last": "Doe",
+        "email": "tc19@example.com",
+        "password": "password123",
+        "confirm": "password123",
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "firstNameError": "First is too long"
+        }
+      }
+    },
+    {
+      "id": "tc028",
+      "description": "All fields empty",
+      "input": {
+        "accept_terms": true
+      },
+      "output": {
+        "errors": {
+          "firstNameError": "First name is required",
+          "lastNameError": "Last name is required",
+          "emailError": "Email is required",
+          "passwordError": "Password is required",
+          "confirmPasswordError": "Please confirm your password"
+        }
+      }
+    },
+    {
+      "id": "tc029",
+      "description": "Click Terms & Conditions link",
+      "actions": [
+        {
+          "type": "click_link",
+          "target": "Terms & Conditions"
+        }
+      ],
+      "output": {
+        "redirect": "termsandcondition.html"
+      }
+    },
+    {
+      "id": "tc030",
+      "description": "Click Sign in link",
+      "actions": [
+        {
+          "type": "click_link",
+          "target": "Sign in"
+        }
+      ],
+      "output": {
+        "redirect": "login.html"
+      }
+    },
+    {
+      "id": "tc031",
+      "description": "Signup button disabled when terms not checked, enabled when checked",
+      "actions": [
+        {
+          "type": "check_element_state",
+          "target": "signupBtn",
+          "expected": "disabled"
+        },
+        {
+          "type": "click_checkbox",
+          "target": "terms"
+        },
+        {
+          "type": "wait",
+          "duration": 2
+        },
+        {
+          "type": "check_element_state",
+          "target": "signupBtn",
+          "expected": "enabled"
+        }
+      ],
+      "output": {}
+    },
+    {
+      "id": "tc032",
+      "description": "Toggle terms checkbox - button state changes accordingly",
+      "actions": [
+        {
+          "type": "click_checkbox",
+          "target": "terms"
+        },
+        {
+          "type": "wait",
+          "duration": 1
+        },
+        {
+          "type": "check_element_state",
+          "target": "signupBtn",
+          "expected": "enabled"
+        },
+        {
+          "type": "click_checkbox",
+          "target": "terms"
+        },
+        {
+          "type": "wait",
+          "duration": 1
+        },
+        {
+          "type": "check_element_state",
+          "target": "signupBtn",
+          "expected": "disabled"
+        }
+      ],
+      "output": {}
+    }
+  ]
+}

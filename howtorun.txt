@@ -1,1 +1,8 @@
-pytest testcase_Register.py -v -s --html=report13.html --self-contained-html
+# Chạy tất cả
+pytest test_signup_dynamic.py -v
+
+# Chạy 1 test cụ thể
+pytest test_signup_dynamic.py::test_tc001 -v
+
+# Với HTML report
+pytest test_signup_dynamic.py --html=report.html --self-contained-html
