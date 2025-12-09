@@ -1,8 +1,13 @@
-# Chạy tất cả
+# Test cơ bản
 pytest test_signup_dynamic.py -v
-
-# Chạy 1 test cụ thể
 pytest test_signup_dynamic.py::test_tc001 -v
+# Test với markers
+pytest test_signup_dynamic.py -m smoke -v
+pytest test_signup_dynamic.py -m validation -v
+pytest test_signup_dynamic.py -m ui -v
 
-# Với HTML report
+# Test với HTML report
 pytest test_signup_dynamic.py --html=report.html --self-contained-html
+
+# tên fuction sinh ra
+pytest --collect-only -q
